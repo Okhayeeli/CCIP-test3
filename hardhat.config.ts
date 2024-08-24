@@ -1,5 +1,6 @@
 import * as dotenvenc from "@chainlink/env-enc";
 dotenvenc.config();
+require("@chainlink/env-enc").config();
 
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-toolbox";
@@ -19,7 +20,6 @@ const GNOSIS_CHIADO_RPC_URL = process.env.GNOSIS_CHIADO_RPC_URL;
 const CELO_ALFAJORES_RPC_URL = process.env.CELO_ALFAJORES_RPC_URL;
 const METIS_SEPOLIA_RPC_URL = process.env.METIS_SEPOLIA_RPC_URL;
 const ZKSYNC_SEPOLIA_RPC_URL = process.env.ZKSYNC_SEPOLIA_RPC_URL;
-
 const config: HardhatUserConfig = {
   solidity: "0.8.19",
   networks: {
@@ -53,6 +53,7 @@ const config: HardhatUserConfig = {
       url: AVALANCHE_FUJI_RPC_URL !== undefined ? AVALANCHE_FUJI_RPC_URL : "",
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
       chainId: 43113,
+      timeout: 60000
     },
     bnbChainTestnet: {
       url:
